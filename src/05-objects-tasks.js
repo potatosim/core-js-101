@@ -119,16 +119,16 @@ const cssSelectorBuilder = {
 
   checkException(order) {
     if (
-      order === this.orderCounter &&
-      (order === 1 || order === 2 || order === 6)
+      order === this.orderCounter
+      && (order === 1 || order === 2 || order === 6)
     ) {
       throw new Error(
-        'Element, id and pseudo-element should not occur more then one time inside the selector'
+        'Element, id and pseudo-element should not occur more then one time inside the selector',
       );
     }
     if (this.orderCounter > order) {
       throw new Error(
-        'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element'
+        'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element',
       );
     }
   },

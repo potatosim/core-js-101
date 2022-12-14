@@ -131,8 +131,8 @@ function isTriangle(a, b, c) {
  */
 function doRectanglesOverlap(rect1, rect2) {
   return (
-    rect1.top + rect1.height > rect2.top &&
-    rect1.width + rect1.left > rect2.left
+    rect1.top + rect1.height > rect2.top
+    && rect1.width + rect1.left > rect2.left
   );
 }
 
@@ -164,8 +164,8 @@ function doRectanglesOverlap(rect1, rect2) {
  */
 function isInsideCircle(circle, point) {
   return (
-    (circle.center.x - point.x) ** 2 + (circle.center.y - point.y) ** 2 <
-    circle.radius ** 2
+    (circle.center.x - point.x) ** 2 + (circle.center.y - point.y) ** 2
+    < circle.radius ** 2
   );
 }
 
@@ -484,34 +484,36 @@ function evaluateTicTacToePosition(position) {
   let winRow = '';
   for (let i = 0; i < 3; i += 1) {
     if (
-      position[i][0] === position[i][1] &&
-      position[i][1] === position[i][2]
+      position[i][0] === position[i][1]
+      && position[i][1] === position[i][2]
     ) {
-      winRow = position[i][0];
+      winRow = [position[i][0]];
     }
   }
 
   let winColumn = '';
   for (let i = 0; i < 3; i += 1) {
     if (
-      position[0][i] === position[1][i] &&
-      position[1][i] === position[2][i]
+      position[0][i] === position[1][i]
+      && position[1][i] === position[2][i]
     ) {
       winColumn = position[0][i];
     }
   }
 
-  const winDiagonal =
-    (position[0][0] === position[1][1] && position[1][1] === position[2][2]) ||
-    (position[2][0] === position[1][1] && position[2][0] === position[0][2])
-      ? position[1][1]
-      : undefined;
+  const winDiagonal = (position[0][0] === position[1][1] && position[1][1] === position[2][2])
+    || (position[2][0] === position[1][1] && position[2][0] === position[0][2])
+    ? position[1][1]
+    : undefined;
 
-  return winRow && winRow.length
-    ? winRow[0]
-    : winColumn && winColumn.length
-    ? winColumn[0]
-    : winDiagonal;
+  if (winRow && winRow.length) {
+    return winRow[0];
+  }
+  if (winColumn && winColumn.length) {
+    return winColumn[0];
+  }
+
+  return winDiagonal;
 }
 
 module.exports = {

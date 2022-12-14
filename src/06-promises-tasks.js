@@ -104,7 +104,7 @@ async function chainPromises(array, action) {
     array.map(async (promise) => {
       const res = await promise;
       promiseResults.push(res);
-    })
+    }),
   );
   return promiseResults.reduce(action);
 }
